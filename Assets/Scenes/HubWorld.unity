@@ -918,6 +918,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 330585546}
   gravity: -9.81
   jumpHeight: 2
+  currentPostion: {x: 0, y: 0, z: 0}
 --- !u!143 &812463763
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1575,8 +1576,8 @@ GameObject:
   - component: {fileID: 2013828210}
   - component: {fileID: 2013828209}
   - component: {fileID: 2013828208}
-  - component: {fileID: 2013828207}
   - component: {fileID: 2013828212}
+  - component: {fileID: 2013828213}
   m_Layer: 0
   m_Name: BookTeleport
   m_TagString: Untagged
@@ -1584,19 +1585,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2013828207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013828206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a805c06645d0147a5264984717c0f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TeleportUnderMap
-  sphereMesh: {fileID: 1075991200}
 --- !u!65 &2013828208
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1717,6 +1705,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2013828213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013828206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca76e0cdd6b0884a990e5bf7d853bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelTeleport
+  sphereMesh: {fileID: 1075991200}
+  sceneName: Level1
 --- !u!1 &2015306118
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,13 @@
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class TeleportUnderMap : MonoBehaviour
+public class LevelTeleport : MonoBehaviour
 {
-    private CharacterController player;
+ 
     public MeshRenderer sphereMesh;
     private MeshRenderer teleportCube;
-    private float undergroundY = -50f;
+    [SerializeField] private string sceneName;
 
     private void Start()
     {
@@ -24,14 +26,9 @@ public class TeleportUnderMap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        player = other.GetComponent<CharacterController>();
-
-        if (player != null && sphereMesh.enabled)
+        if (other.CompareTag("Player") && (teleportCube.enabled))
         {
-            player.enabled = false;
-            Vector3 pos = player.transform.position;
-            player.transform.position = new Vector3(pos.x, undergroundY, pos.z);
-            player.enabled = true;
+            SceneManager.LoadScene(sceneName);
         }
     }
 }

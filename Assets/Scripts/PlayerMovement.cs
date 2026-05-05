@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTransform;
     public float gravity = -9.81f;
     public float jumpHeight = 2f;
-   
-
+    public Vector3 currentPostion;
+    bool isDashing = false;
 
     private Vector3 velocity;
     private CharacterController controller;
@@ -36,9 +36,9 @@ public class PlayerMovement : MonoBehaviour
 
             Jump();
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
         {
-            StartCoroutine(Dash(30f, 0.5f));
+            StartCoroutine(Dash(15f, 0.2f));
         }
 
         // Apply gravity
@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Move the character
         controller.Move(finalMove * Time.deltaTime);
+        currentPostion = transform.position;
     }
     void Jump()
     {
@@ -80,7 +81,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash(float dashSpeed, float time)
     {
-        
+        isDashing = true;
+
         float orignalSpeed = speed;
         speed = dashSpeed;
 
@@ -88,7 +90,13 @@ public class PlayerMovement : MonoBehaviour
 
         // reset speed
         speed = orignalSpeed;
-      
+        isDashing = false;
+
+    }
+
+    public Vector3 getPosition()
+    {
+        return currentPostion;
     }
 }
     
