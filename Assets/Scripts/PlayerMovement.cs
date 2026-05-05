@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTransform;
     public float gravity = -9.81f;
     public float jumpHeight = 2f;
+   
+
 
     private Vector3 velocity;
     private CharacterController controller;
@@ -31,7 +33,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            Jump();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(Dash(30f, 0.5f));
         }
 
         // Apply gravity
@@ -66,4 +73,22 @@ public class PlayerMovement : MonoBehaviour
         // Move the character
         controller.Move(finalMove * Time.deltaTime);
     }
+    void Jump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+    }
+
+    IEnumerator Dash(float dashSpeed, float time)
+    {
+        
+        float orignalSpeed = speed;
+        speed = dashSpeed;
+
+        yield return new WaitForSeconds(time);
+
+        // reset speed
+        speed = orignalSpeed;
+      
+    }
 }
+    
